@@ -71,12 +71,12 @@ def messageHandler(txt,roam):
   text = txt[1:].split()
   cmd, args = [text[0], ' '.join(text[1:])] if len(text)>=1 else [text,'']
   
-  if cmd not in config.COMMANDS:
-    return bot.sendMessage(f"⚠️ Command '{cmd}' not found.")
+  if cmd.lower() not in config.COMMANDS:
+    return bot.sendMessage(f"⚠️ Command '{cmd.lower()}' not found.")
   
-  function = config.COMMANDS[cmd]["def"]
+  function = config.COMMANDS[cmd.lower()]["def"]
   data = Data(
-    cmd = cmd,
+    cmd = cmd.lower(),
     args = args
   )
   function(bot, data)

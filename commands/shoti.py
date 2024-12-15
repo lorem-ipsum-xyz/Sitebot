@@ -350,8 +350,9 @@ def shoti(bot, data):
     if "error" in res:
       bot.unsendMessage(loading['id'])
       return bot.sendMessage("⚠️ An error accured while fetching the data, please try again.")
+    line = "━━━━━━━━━━━━━━━"
     message = {
-      "body": f"━━━━━━━━━━━━━━━\n{res['description']}\n━━━━━━━━━━━━━━━" if res['description'] != 'No Description' else None,
+      "body": f"{res['description']}" if res['description'] != 'No description' else None,
       "attachment": {
         "src": res['url'],
         "type": 'video'
