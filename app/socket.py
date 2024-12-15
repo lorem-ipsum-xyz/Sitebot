@@ -1,11 +1,14 @@
-from flask_socketio import SocketIO, emit
 from .handleMessage import messageHandler
+from flask_socketio import SocketIO, join_room
 
 def socketHandler(io):
-  @io.on('connected')
-  def handle_connect(data):
-    emit('sendMessage',data)
+  @io.on('join')
+  def Join(data):
+    join_room(data['room'])
+    io.emit('sendMessage',{"data":data['data'],"id":data['id']}, to=data['room'])
   
   @io.on('recieveMessage')
   def handleMessage(data):
-    messageHandler(data)
+    text = data["text"]
+    room = data["room"]
+    messageHandler(text, room)

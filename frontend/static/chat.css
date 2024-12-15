@@ -11,8 +11,8 @@
   background: #e0e0e0;
   position: relative;
   animation: pulse 0.5s infinite ease-in-out;
-  border-radius: 10px;
-}.skeleton-image{
+  border-radius: 10px;}
+.skeleton-image{
   width: 100%;
   border-radius: 10px;
   height: 100%;
@@ -31,7 +31,6 @@
     background-color: #e0e0e0;
   }
 }
-
 @keyframes loading {
   0% {
     background-position: -200% 0;
@@ -50,6 +49,7 @@
   padding-bottom: 4em;
 }
 
+/* MESSAGE CONTAINER */
 .message_container{
   height: 93vh;
   display: flex;
@@ -67,17 +67,8 @@
   overflow-wrap: break-word;
   margin-bottom: 1em;
 }
-.message img{
-  border-radius: 10px;
-  width: 100%;
-  cursor: pointer;
-}.message video{
-  border-radius: 10px;
-}
-.message .attachment{
-  padding-top:5px;
-}
-.body p{font-size: 14px}
+
+/* ME MESSAGE */
 .me{
   float: right;
   margin-right:10px;
@@ -85,9 +76,27 @@
   color: #fefefe;
   border-color: #4335A7;
 }
+
+/* OTHER MESSAGE */
 .bot{float: left;margin-left:10px}
 
+/* MESSAGE DATA */
+/* Body */
+.body p{font-size: 14px}
 
+/* Attachment: */
+.message .attachment{
+  padding-top:5px;
+}
+.message img{
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+}.message video{
+  border-radius: 10px;
+}
+
+/* INPUT CONTAINER */
 .input_container{
   height: 7vh;
   position: sticky;

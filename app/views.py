@@ -1,10 +1,14 @@
 from flask import (
   Blueprint,
-  render_template
+  render_template,
+  session
 )
-
+from secrets import token_hex
 view = Blueprint('view',__name__)
 
 @view.route('/')
 def root():
-  return render_template('chat.html', title="Webchat"), 200
+  sid = session.get('sid')
+  if not sid:
+    session['sid'] = f"ROOM-{token_hex(20)}"
+  return render_template('chat.html', title="Webchat", session=session.get('sid', 'global')), 200

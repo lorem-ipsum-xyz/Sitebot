@@ -4,6 +4,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 <script type="text/javascript" charset="utf-8">
   var io = io();
+  const Room = "{{ session }}"
   let basePath = "{{ url_for('static', filename='cache/') }}"
 </script>
 <script src="{{ url_for('static', filename='chat.js') }}"></script>
@@ -12,9 +13,7 @@
 {% block content %}
 <div class="container">
   
-  <div class="message_container">
-    <!-- Messages -->
-  </div>
+  <div class="message_container"></div>
   
   <div class="input_container">
     <!-- Features input

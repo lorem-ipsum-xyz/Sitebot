@@ -3,10 +3,12 @@ import config
 import secrets
 import mimetypes
 from dataclasses import dataclass
+#from flask_socketio import SocketIO, join_room
 
 class Bot:
-  def __init__(self):
+  def __init__(self, room):
     self.__io = config.io
+    self.__room = room
     
     self.prefix = config.PREFIX
     self.commands = config.COMMANDS
@@ -44,12 +46,12 @@ class Bot:
             bahay2['type'] = self.__file(attch['src'])
           bahay1.append(bahay2)
         data["data"]["attachment"] = bahay1
-    self.__io.emit('sendMessage',data)
+    self.__io.emit('sendMessage', data, to=self.__room)
     return {"id": messageID}
   def unsendMessage(self, messageID):
     self.__io.emit('unsendMessage', {
       "id": messageID
-    })
+    }, to=self.__room)
 
 @dataclass
 class Data:
@@ -58,8 +60,8 @@ class Data:
   prefix: str =  config.PREFIX
   developer: str = config.DEVELOPER
 
-def messageHandler(txt):
-  bot = Bot()
+def messageHandler(txt,roam):
+  bot = Bot(roam)
   
   if not txt.startswith(config.PREFIX):
     return
@@ -71,7 +73,7 @@ def messageHandler(txt):
   
   if cmd not in config.COMMANDS:
     return bot.sendMessage(f"⚠️ Command '{cmd}' not found.")
-    
+  
   function = config.COMMANDS[cmd]["def"]
   data = Data(
     cmd = cmd,

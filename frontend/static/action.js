@@ -1,8 +1,9 @@
 const sendMessage = displayMessage;
 
-io.emit('connected', {
+io.emit('join', {
   data: `Welcome! This sitebot was created by Greegmon. You can interact with it using various commands. Type '/help' to view a list of available commands.`,
-  id: 'MSG-Welcome'
+  id: 'MSG-Welcome',
+  room: Room
 })
 
 io.on('sendMessage', (msg) => {
@@ -36,6 +37,9 @@ function execute(){
       id: messageID(20)
     }, true)
     input.val('');
-    io.emit('recieveMessage', value);
+    io.emit('recieveMessage', {
+      text: value,
+      room: Room
+    });
   }
 }
