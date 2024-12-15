@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block jss %}
+<link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf-8">
+  var io = io();
+  let basePath = "{{ url_for('static', filename='cache/') }}"
+</script>
+<script src="{{ url_for('static', filename='chat.js') }}"></script>
+<script src="{{ url_for('static', filename='action.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+  
+  <div class="message_container">
+    <!-- Messages -->
+  </div>
+  
+  <div class="input_container">
+    <!-- Features input
+    <div class="oth">
+      <button><i class="fa-solid fa-image"></i></button>
+    </div>
+    -->
+    <!-- [END] -->
+    <div class="input">
+      <input type="text" placeholder="Message here..." id="input">
+    </div>
+    <div class="send">
+      <button id="send" onclick="execute()"><i class="fa-solid fa-arrow-up"></i></button>
+    </div>
+  </div>
+</div>
+{% endblock %}

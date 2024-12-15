@@ -1,0 +1,143 @@
+:root{
+  --me: #1998e6;
+  --bot: #ddd;
+  --bg: #fff;
+}
+
+
+/* SKELETON LOADING */
+.skeleton{
+  height: 200px;
+  background: #e0e0e0;
+  position: relative;
+  animation: pulse 0.5s infinite ease-in-out;
+  border-radius: 10px;
+}.skeleton-image{
+  width: 100%;
+  border-radius: 10px;
+  height: 100%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+@keyframes pulse {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+
+.container{
+  background: var(--bg);
+  height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 4em;
+}
+
+.message_container{
+  height: 93vh;
+  display: flex;
+  flex-direction: column-reverse;
+  padding-top: 1em;
+  overflow-y: scroll;
+  background: var(--bg);
+  padding-bottom: 1em;
+}
+.message{
+  border: 1px solid var(--bot);
+  padding: 8px 10px;
+  max-width: 500px;
+  border-radius: 15px;
+  overflow-wrap: break-word;
+  margin-bottom: 1em;
+}
+.message img{
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+}.message video{
+  border-radius: 10px;
+}
+.message .attachment{
+  padding-top:5px;
+}
+.body p{font-size: 14px}
+.me{
+  float: right;
+  margin-right:10px;
+  background: #4335A7;
+  color: #fefefe;
+  border-color: #4335A7;
+}
+.bot{float: left;margin-left:10px}
+
+
+.input_container{
+  height: 7vh;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  padding: 7px 8px;
+  border-top: 2px solid var(--bot);
+  background: #ffff;
+}
+.input_container button,
+.input_container input{
+  padding: 7px 5px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  font-size: 14px;
+}
+.oth button{
+  font-size: 22px;
+  padding: 2px !important;
+  color: #2252fa;
+  text-align: center;
+  transition: 0.2s;
+  background: none;
+  cursor: pointer;
+}
+.input{flex:1}
+#input{
+  width:100%;
+  padding:7px 8px;
+  border-radius: 20px;
+  border: 1px solid #d9d9d9;
+}
+#send{
+  padding: 7px 10px;
+  border-radius: 50%;
+  background: #296cec;
+  color: var(--bg);
+  transition: 0.2s;
+  cursor: pointer;
+  &:hover{
+    background: #2252fa;
+  }
+}
+
+@media(max-width: 768px){
+  .message{
+    max-width: 70%;
+  }
+}
