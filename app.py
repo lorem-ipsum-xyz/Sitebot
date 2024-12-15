@@ -1,5 +1,7 @@
 from app import myapp
+import os
 socket, app = myapp()
 
 if __name__ == '__main__':
-  socket.run(app, debug=True, host='0.0.0.0')
+  PORT = os.getenv('PORT', 5000)
+  socket.run(app, host='0.0.0.0', port=PORT)
