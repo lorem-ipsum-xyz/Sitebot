@@ -5,8 +5,9 @@ import config
 
 def myapp():
   from .socket import socketHandler
-  from .views import view
   from .loadCommands import register
+  from .views import view
+  from .cmdRoutes import cmd
   
   app = Flask(__name__,
     template_folder=os.path.abspath('frontend'),
@@ -20,5 +21,6 @@ def myapp():
   socketHandler(socket)
   
   app.register_blueprint(view)
+  app.register_blueprint(cmd)
   
   return [socket, app]

@@ -42,7 +42,7 @@ function text(text, $body){
   text = text.replace(/</g, span('<')).replace(/>/g, span('>'));
   text = text.replace(/\n/g, '<br>')
   
-  const linkRegex = /!\[([^\]]+)\]\(https:\/\/([^\)]+)\)/g
+  const linkRegex = /!\[([^\]]+)\]\(([^\)]+)\)/g
   let links = text.match(linkRegex);
   if (links){
     for (const link of links){

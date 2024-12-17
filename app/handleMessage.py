@@ -13,6 +13,7 @@ class Bot:
     self.prefix = config.PREFIX
     self.commands = config.COMMANDS
     self.developer = config.DEVELOPER
+    self.host = "https://greeg-sitebot.onrender.com"
   def __file(self,file_path):
     mime_type, encoding = mimetypes.guess_type(file_path)
     if mime_type:
