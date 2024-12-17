@@ -1,36 +1,89 @@
 {% extends 'base.html' %}
 {% block jss %}
+<script>
+  let isDarkmode = true
+  let basePath = "{{ url_for('static', filename='cache/') }}"
+</script>
 <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+<script src="{{ url_for('static', filename='chat.js') }}"></script>
+<script src="{{ url_for('static', filename='actions.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 <script type="text/javascript" charset="utf-8">
   var io = io();
   const Room = "{{ session }}"
-  let basePath = "{{ url_for('static', filename='cache/') }}"
 </script>
-<script src="{{ url_for('static', filename='chat.js') }}"></script>
-<script src="{{ url_for('static', filename='action.js') }}"></script>
+<script src="{{ url_for('static', filename='socket.js') }}"></script>
 {% endblock %}
 {% block content %}
 <div class="container">
   
   <div class="header">
-    <h2>Hello World</h2>
+    <div class="title">
+      <h2>Sitebot</h2>
+    </div>
+    <div class="menu">
+      <button id="mode"><i class="fa-solid fa-moon"></i></button>
+    </div>
   </div>
-  <div class="message_container"></div>
+  
+  <div class="messages" id="msg-cont">
+    
+    <div class="spacer">
+      <div class="inner-spacer">
+        <div class="text">
+          <p>
+            Welcome! This sitebot was created by <a href="">Greegmon</a>,
+            You can interact with it using various commands.
+            Type '/help' to view a list of available commands.
+          </p>
+        </div>
+        <div class="clicks">
+          <a href="https://github.com/lorem-ipsum-xyz/Sitebot" target="_blank"><button class="repository-button"><i class="fa-brands fa-github"></i> Repository</button></a>
+          <a href="https://facebook.com/christopher.jr.01" target="_blank"><button class="developer-button"><i class="fa-brands fa-facebook"></i> Developer</button></a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
   
   <div class="input_container">
-    <!-- Features input
-    <div class="oth">
-      <button><i class="fa-solid fa-image"></i></button>
+    <div class="other">
+      <button id="upload_image" class="other">
+        <i class="fa-solid fa-image"></i>
+      </button>
+      <button id="upload_video" class="other">
+        <i class="fa-solid fa-video"></i>
+      </button>
     </div>
-    -->
-    <!-- [END] -->
     <div class="input">
       <input type="text" placeholder="Message here..." id="input">
     </div>
-    <div class="send">
+    <div class="button">
       <button id="send" onclick="execute()"><i class="fa-solid fa-arrow-up"></i></button>
     </div>
   </div>
+  
 </div>
+
+<!-- (NEXT UPDATE)
+<div class="messageMenu">
+  
+  <div class="reactions">
+    <button><i class="fa-solid fa-thumbs-up"></i></button>
+    <button><i class="fa-solid fa-thumbs-down"></i></button>
+  </div>
+
+  <div class="message-clicks">
+    <div class="btn-reply btn">
+      <button id="reply-btn"><i class="fa-solid fa-share"></i> Reply</button>
+    </div>
+    <div class="btn-unsend btn">
+      <button id="unsend-btn"><i class="fa-solid fa-trash"></i> Unsend</button>
+    </div>
+  </div>
+  <div class="btn-cancel">
+    <button id="cancel-btn">Cancel</button>
+  </div>
+</div>
+-->
 {% endblock %}

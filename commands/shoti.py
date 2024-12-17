@@ -340,21 +340,28 @@ LISTAHAN = [
     "https://vt.tiktok.com/ZS2oQpr3x/"
 ]
 
-url = "https://api.joshweb.click/tiktokdl?url="
+url = "https://kaiz-apis.gleeze.com/api/shoti"
 def shoti(bot, data):
   if data.args:
     return bot.sendMessage("⚠️ This command dont need an argument.")
   loading = bot.sendMessage("⏳ Generating a random shoti video...")
   try:
-    res = get(url + choice(LISTAHAN)).json()
+    res = get(url)
+    res = res.json()
     if "error" in res:
       bot.unsendMessage(loading['id'])
-      return bot.sendMessage("⚠️ An error accured while fetching the data, please try again.")
+      return bot.sendMessage(res['error'])#("⚠️ An error accured while fetching the data, please try again.")
+    res = res['shoti']
     line = "━━━━━━━━━━━━━━━"
+    text = line + '\n'
+    text += "Username: " + res['username'] + '\n'
+    text += "Nickname: " + res['nickname'] + '\n'
+    text += line + '\n'
+    text += res['title']
     message = {
-      "body": f"{res['description']}" if res['description'] != 'No description' else None,
+      "body": text,
       "attachment": {
-        "src": res['url'],
+        "src": res['videoUrl'],
         "type": 'video'
       }
     }

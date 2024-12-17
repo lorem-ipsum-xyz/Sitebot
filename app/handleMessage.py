@@ -46,6 +46,7 @@ class Bot:
             bahay2['type'] = self.__file(attch['src'])
           bahay1.append(bahay2)
         data["data"]["attachment"] = bahay1
+      print(data)
     self.__io.emit('sendMessage', data, to=self.__room)
     return {"id": messageID}
   def unsendMessage(self, messageID):
