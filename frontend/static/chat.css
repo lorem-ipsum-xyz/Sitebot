@@ -21,10 +21,11 @@ body{
   background: #e0e0e0;
   margin-top: 3px;
   position: relative;
+  max-width: 100%;
   animation: pulse 0.5s infinite ease-in-out;
   border-radius: 10px;}
 .skeleton-image{
-  width: 200px;
+  width: 100%;
   border-radius: 10px;
   height: 100%;
   background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);

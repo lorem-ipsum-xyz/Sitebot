@@ -58,6 +58,7 @@ class Bot:
 class Data:
   cmd: str
   args: str
+  message_id: str
   prefix: str =  config.PREFIX
   developer: str = config.DEVELOPER
 

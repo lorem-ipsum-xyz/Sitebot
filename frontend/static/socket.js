@@ -3,7 +3,6 @@ const sendMessage = displayMessage;
 io.emit('join', Room)
 
 io.on('sendMessage', (msg) => {
-  console.log(msg)
   sendMessage({
     data: msg.data,
     id: msg.id
