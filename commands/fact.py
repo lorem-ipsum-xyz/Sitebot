@@ -12,6 +12,7 @@ def fact(bot, data):
     data = res.json()
     bot.sendMessage(data['text'])
   except Exception as e:
+    print("Error: ", e)
     bot.sendMessage(e)
 
 config = {
