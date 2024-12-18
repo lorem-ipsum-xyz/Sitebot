@@ -13,7 +13,6 @@ class Bot:
     self.prefix = config.PREFIX
     self.commands = config.COMMANDS
     self.developer = config.DEVELOPER
-    self.host = "https://greeg-sitebot.onrender.com"
   def __file(self,file_path):
     mime_type, encoding = mimetypes.guess_type(file_path)
     if mime_type:
@@ -62,9 +61,9 @@ class Data:
   prefix: str =  config.PREFIX
   developer: str = config.DEVELOPER
 
-def messageHandler(txt,roam):
+def messageHandler(datos,roam):
   bot = Bot(roam)
-  
+  txt = datos['text']
   if not txt.startswith(config.PREFIX):
     return
   if len(txt) == 1:
@@ -79,6 +78,7 @@ def messageHandler(txt,roam):
   function = config.COMMANDS[cmd.lower()]["def"]
   data = Data(
     cmd = cmd.lower(),
-    args = args
+    args = args,
+    message_id = datos["id"]
   )
   function(bot, data)

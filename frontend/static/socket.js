@@ -29,15 +29,16 @@ function messageID(count){
 function execute(){
   const input = $('#input');
   const value = input.val().trim()
-  console.log(value)
   if (value){
+    const $ID = messageID(20)
     sendMessage({
       data: value,
-      id: messageID(20)
+      id: $ID
     }, true)
     input.val('');
     io.emit('recieveMessage', {
       text: value,
+      id: $ID,
       room: Room
     });
   }

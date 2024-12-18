@@ -9,6 +9,9 @@ def socketHandler(io):
   
   @io.on('recieveMessage')
   def handleMessage(data):
-    text = data["text"]
     room = data["room"]
-    messageHandler(text, room)
+    message = {
+      "text": data['text'],
+      "id": data['id']
+    }
+    messageHandler(message, room)
