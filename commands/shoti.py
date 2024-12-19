@@ -12,6 +12,10 @@ def getShoti(link):
     res = post(url, json=data, headers=headers, timeout=10)
     html = BeautifulSoup(res.content, 'html.parser')
     
+    print(html.prettify())
+    print(res.status_code)
+    print(link)
+    
     buttons = html.find('div', id='button-download-ready')
     mdiv = html.find('div', class_="flex flex-row items-center justify-center gap-1 mt-5 w-3/4")
     row = html.find('div',class_="flex flex-row items-center justify-center gap-2 mt-2")
