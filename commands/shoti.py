@@ -36,7 +36,6 @@ def getShoti(link):
       "music": music,
       "videoSource": videoLink
     }
-    print(data)
     return data
   except Exception as e:
     print("ERROR: ", e)
@@ -46,11 +45,11 @@ def shoti(bot, data):
   if data.args:
     return bot.sendMessage("⚠️ This command dont need an argument.")
   loading = bot.sendMessage("⏳ Generating a random shoti video...")
+  jayson = json.load(open('commands/cache/shoti.json', 'r'))
+  print('\033[33m')
+  print(choice(jayson['link']))
+  print('\033[0m')
   try:
-    jayson = json.load(open('commands/cache/shoti.json', 'r'))
-    print(choice[jayson['link']])
-    print(res)
-    res = getShoti(choice(jayson['link']))
     if "error" in res:
       bot.unsendMessage(loading['id'])
       return bot.sendMessage(res['error'])#("⚠️ An error accured while fetching the data, please try again.")
