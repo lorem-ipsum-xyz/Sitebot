@@ -47,9 +47,11 @@ def shoti(bot, data):
   loading = bot.sendMessage("⏳ Generating a random shoti video...")
   jayson = json.load(open('commands/cache/shoti.json', 'r'))
   print('\033[33m')
+  bot.sendMessage(choice(jayson['link']))
   print(choice(jayson['link']))
   print('\033[0m')
   try:
+    res = getShoti(choice(jayson['link']))
     if "error" in res:
       bot.unsendMessage(loading['id'])
       return bot.sendMessage(res['error'])#("⚠️ An error accured while fetching the data, please try again.")
