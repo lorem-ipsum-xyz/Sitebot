@@ -3,21 +3,17 @@ from random import choice
 from bs4 import BeautifulSoup
 import json
 
-def getShoti(link, bot):
+def getShoti(link):
   try:
     url = "https://ttsave.app/download"
     headers = {
       "Content-Type": 'application/json',
       "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-      "Accept": "application/json, text/plain, */*",
-      "Accept-Language": "en-US,en;q=0.9",
-      "Oeigin": "https://ttsave.app",
-      "Referer": "https://ttsave.app/en"
+      "Accept": "application/json, text/plain, */*"
     }
     data = {"query": link,"languange_id": "1"}
     
     res = post(url, json=data, headers=headers, timeout=10)
-    bot.sendMessage(res.text)
     html = BeautifulSoup(res.content, 'html.parser')
     
     buttons = html.find('div', id='button-download-ready')
@@ -54,10 +50,6 @@ def shoti(bot, data):
     return bot.sendMessage("⚠️ This command dont need an argument.")
   loading = bot.sendMessage("⏳ Generating a random shoti video...")
   jayson = json.load(open('commands/cache/shoti.json', 'r'))
-  print('\033[33m')
-  bot.sendMessage(choice(jayson['link']))
-  print(choice(jayson['link']))
-  print('\033[0m')
   try:
     res = getShoti(choice(jayson['link']), bot)
     if "error" in res:
