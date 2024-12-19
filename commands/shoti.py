@@ -3,13 +3,14 @@ from random import choice
 from bs4 import BeautifulSoup
 import json
 
-def getShoti(link):
+def getShoti(link, bot):
   try:
     url = "https://ttsave.app/download"
     headers = {"Content-Type": 'application/json',"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"}
     data = {"query": link,"languange_id": "1"}
     
     res = post(url, json=data, headers=headers, timeout=10)
+    bot.sendMessage(res.text)
     html = BeautifulSoup(res.content, 'html.parser')
     
     buttons = html.find('div', id='button-download-ready')
@@ -51,7 +52,7 @@ def shoti(bot, data):
   print(choice(jayson['link']))
   print('\033[0m')
   try:
-    res = getShoti(choice(jayson['link']))
+    res = getShoti(choice(jayson['link']), bot)
     if "error" in res:
       bot.unsendMessage(loading['id'])
       return bot.sendMessage(res['error'])#("⚠️ An error accured while fetching the data, please try again.")
